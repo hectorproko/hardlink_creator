@@ -37,13 +37,17 @@ def create_hard_link(target_file, link_destination):
         print(f"\033[91mFailed to create hard link: {error}\033[0m")  # Red text
 
 # Example usage:
-target_file = os.path.normpath(filedialog.askopenfilename())  # Prompts for a single file
-#target_files = filedialog.askopenfilenames()  # Prompts for multiple files
+#target_file = os.path.normpath(filedialog.askopenfilename())  # Prompts for a single file
+target_files = filedialog.askopenfilenames()  # Prompts for multiple files
 link_destination = os.path.normpath(filedialog.askdirectory()) 
 
 #print(target_file)
 #print(link_destination)
 
 
+for target_file in target_files:  # Iterate over each selected file
+    target_file = os.path.normpath(target_file)  # Normalize the path
+    create_hard_link(target_file, link_destination)  # Create a hard link for each file
 
-create_hard_link(target_file, link_destination)
+
+#create_hard_link(target_file, link_destination)
